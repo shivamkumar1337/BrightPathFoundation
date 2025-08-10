@@ -1,12 +1,9 @@
 import React from 'react';
 import Button from '../common/Button';
 import { useContent } from '../../hooks/useContent';
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../utils/routes';
 
 const CallToAction: React.FC = () => {
   const { content, loading, error } = useContent('cta');
-  const navigate = useNavigate();
 
   // Default actions as fallback
   const defaultActions = [

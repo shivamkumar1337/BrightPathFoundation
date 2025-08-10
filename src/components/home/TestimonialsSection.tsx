@@ -91,11 +91,11 @@ const TestimonialsSection: React.FC = () => {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial) => (
             <Card 
               key={testimonial.id} 
               className="p-8 relative overflow-hidden group animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              // style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Category Icon */}
               <div className={`absolute top-6 right-6 w-12 h-12 ${getCategoryColor(testimonial.category)} rounded-full flex items-center justify-center text-white text-xl group-hover:scale-110 transition-transform duration-300`}>

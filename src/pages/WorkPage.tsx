@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import Navigation from '../components/layout/Navigation';
-import Footer from '../components/layout/Footer';
+// import Navigation from '../components/layout/Navigation';
+// import Footer from '../components/layout/Footer';
 import CategoryFilter from '../components/work/CategoryFilter';
 import ProjectGrid from '../components/work/ProjectGrid';
 import StatsOverview from '../components/work/StatsOverview';

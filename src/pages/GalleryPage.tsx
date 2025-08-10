@@ -293,12 +293,12 @@ const GalleryPage: React.FC = () => {
     return images.filter(image => image.category === activeCategory);
   }, [activeCategory, images]);
 
-  const filteredVideos = useMemo(() => {
-    if (activeCategory === 'all') {
-      return videos;
-    }
-    return videos.filter(video => video.category === activeCategory);
-  }, [activeCategory, videos]);
+  // const filteredVideos = useMemo(() => {
+  //   if (activeCategory === 'all') {
+  //     return videos;
+  //   }
+  //   return videos.filter(video => video.category === activeCategory);
+  // }, [activeCategory, videos]);
 
   const handleCategoryChange = (categoryId: string) => {
     setActiveCategory(categoryId);

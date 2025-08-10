@@ -3,7 +3,7 @@ import HeroSection from '../components/home/HeroSection';
 import AboutSection from '../components/home/AboutSection';
 import FeaturedWork from '../components/home/FeaturedWork';
 import StatsSection from '../components/home/StatsSection';
-import TestimonialsSection from '../components/home/TestimonialsSection';
+// import TestimonialsSection from '../components/home/TestimonialsSection';
 import CallToAction from '../components/home/CallToAction';
 // import CallToAction from '../components/home/CallToAction';
 

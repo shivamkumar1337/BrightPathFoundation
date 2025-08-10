@@ -96,7 +96,7 @@ const FeaturedWork: React.FC = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {projects.map((project, index) => {
+          {projects.map((project) => {
             const categoryInfo = getCategoryInfo(project.category);
             const impactText = project.impact_metrics?.literacy_improvement || 
                              project.impact_metrics?.response_time || 
