@@ -41,7 +41,7 @@ const Navigation: React.FC = () => {
           {/* Logo */}
           <Link to={ROUTES.HOME}>
             <img 
-              src="../assets/logo.png" 
+              src="/logo.png" 
               alt="Bright Path Foundation" 
               className="h-25 w-auto"
             />

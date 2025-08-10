@@ -10,8 +10,8 @@ const HeroSection: React.FC = () => {
   const navigate = useNavigate();
   // Default background images (fallback)
   const defaultImages = [
-    '/src/assets/4.jpg',
-    '/src/assets/5.jpg',
+    '/4.jpg',
+    '/5.jpg',
   ];
 
   const backgroundImages = content?.metadata?.background_images || defaultImages;

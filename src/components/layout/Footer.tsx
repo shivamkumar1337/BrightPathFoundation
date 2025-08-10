@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
 
               <Link to={ROUTES.HOME} className="flex items-center mb-8 group">
                 <img 
-              src="/src/assets/logo.png" 
+              src="/logo.png" 
               alt="Bright Path Foundation" 
               className="h-25 w-auto"
               />
