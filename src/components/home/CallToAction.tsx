@@ -78,7 +78,7 @@ const CallToAction: React.FC = () => {
 
   // Use database content or fallback to defaults
   const actions = content?.metadata?.actions || defaultActions;
-  const title = content?.title || 'Ready to Light Up Someone\'s Path?';
+  // const title = content?.title || 'Ready to Light Up Someone\'s Path?';
   const description = content?.content || 'Join thousands of changemakers who are helping us create brighter futures. Every contribution, every volunteer hour, every shared story makes a difference.';
 
   return (

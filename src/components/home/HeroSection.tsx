@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Button from '../common/Button';
+// import Button from '../common/Button';
 import { useContent } from '../../hooks/useContent';
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../utils/routes';
+// import { useNavigate } from 'react-router-dom';
+// import { ROUTES } from '../../utils/routes';
 
 const HeroSection: React.FC = () => {
   const { content, loading, error } = useContent('hero_section');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentSubheading, setCurrentSubheading] = useState(0);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
   // Default background images (fallback)
   const defaultImages = [

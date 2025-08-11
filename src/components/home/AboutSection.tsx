@@ -1,12 +1,12 @@
 import React from 'react';
-import Button from '../common/Button';
+// import Button from '../common/Button';
 import { useContent } from '../../hooks/useContent';
-import { ROUTES } from '../../utils/routes';
-import { useNavigate } from 'react-router-dom';
+// import { ROUTES } from '../../utils/routes';
+// import { useNavigate } from 'react-router-dom';
 
 const AboutSection: React.FC = () => {
   const { content, loading, error } = useContent('about_preview');
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // Default features as fallback
   const defaultFeatures = [

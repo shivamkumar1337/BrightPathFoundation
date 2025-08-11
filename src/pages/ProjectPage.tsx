@@ -5,9 +5,9 @@ import ProjectHero from '../components/work/ProjectHero';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ProjectContent from '../components/work/ProjectContent';
 import ProjectGallery from '../components/work/ProjectGallery';
-import ProjectImpact from '../components/work/ProjectImpact';
-import ProjectDetails from '../components/work/ProjectDetails';
-import RelatedProjects from '../components/work/RelatedProjects';
+// import ProjectImpact from '../components/work/ProjectImpact';
+// import ProjectDetails from '../components/work/ProjectDetails';
+// import RelatedProjects from '../components/work/RelatedProjects';
 
 const ProjectPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
