@@ -7,11 +7,18 @@ import { ROUTES } from '../../utils/routes';
 const HeroSection: React.FC = () => {
   const { content, loading, error } = useContent('hero_section');
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSubheading, setCurrentSubheading] = useState(0);
   const navigate = useNavigate();
+  
   // Default background images (fallback)
   const defaultImages = [
     '/4.jpg',
     '/5.jpg',
+  ];
+
+  const subHeadings = [
+    'Helping Kids', 
+    'Women Empowerment'
   ];
 
   const backgroundImages = content?.metadata?.background_images || defaultImages;
@@ -23,6 +30,15 @@ const HeroSection: React.FC = () => {
 
     return () => clearInterval(timer);
   }, [backgroundImages.length]);
+
+  // Animate subheadings
+  useEffect(() => {
+    const subheadingTimer = setInterval(() => {
+      setCurrentSubheading((prev) => (prev + 1) % subHeadings.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(subheadingTimer);
+  }, [subHeadings.length]);
 
   if (loading) {
     return (
@@ -70,41 +86,68 @@ const HeroSection: React.FC = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-5xl mx-auto">
+          {/* Animated Subheading */}
+          <div className=" h-16 flex items-center justify-center">
+            <div className="relative h-full w-full overflow-hidden">
+              {subHeadings.map((subHeading, index) => (
+                <div
+                  key={index}
+                  className={`absolute inset-0 transition-all duration-700 transform ${
+                    index === currentSubheading 
+                      ? 'translate-y-0 opacity-100' 
+                      : index < currentSubheading 
+                        ? '-translate-y-full opacity-0' 
+                        : 'translate-y-full opacity-0'
+                  }`}
+                >
+                  <span className="inline-block bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-lg md:text-xl font-bold uppercase tracking-wider">
+                    {subHeading}
+                  </span>
+                </div>
+              ))}
+              {/* Static container for height */}
+              <span className="invisible text-lg md:text-xl font-bold uppercase tracking-wider">
+                {subHeadings[0]}
+              </span>
+            </div>
+          </div>
+
+          {/* Golden accent line */}
+            <div className="flex items-center justify-center mb-6">
+              <div className="w-24 h-1 bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 rounded-full shadow-lg shadow-yellow-400/50"></div>
+            </div>
+          
           {/* Main Heading */}
           <div className="mb-8">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              {content?.title || 'Lighting the Way to a Brighter Tomorrow'}
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight animate-fade-in-up">
+              {content?.title || ''}
             </h1>
-            <div className="w-24 h-1 bg-yellow-300 mx-auto rounded-full mb-6"></div>
+            
+            {/* Golden accent line */}
+            <div className="flex items-center justify-center mb-6">
+              <div className="w-24 h-1 bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 rounded-full shadow-lg shadow-yellow-400/50"></div>
+            </div>
           </div>
           
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl mb-10 text-blue-100 max-w-4xl mx-auto leading-relaxed">
-            {content?.content || 'Join Bright Path Foundation in our mission to create lasting positive change through education, disaster relief, youth sports, and food security programs worldwide.'}
+          <p className="text-xl md:text-2xl mb-10 text-blue-100 max-w-4xl mx-auto leading-relaxed animate-fade-in-up animation-delay-300">
+            {content?.content || ''}
           </p>
-          
-          {/* Call to Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Button variant="secondary" size="lg" className="min-w-48" onClick={() => navigate(ROUTES.WORK)}>
-                  🌟 Get Involved
-                </Button>
-                <Button variant="outline-orange" size="lg" className="min-w-48 text-white border-white hover:bg-white hover:text-orange-600" onClick={() => navigate(ROUTES.ABOUT)}>
-                  📖 Our Story
-                </Button>
-          </div>
+
         </div>
       </div>
 
+      {/* Slide Indicators */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex space-x-3">
-          {backgroundImages.map((_:any, index:number) => (
+          {backgroundImages.map((_: any, index: number) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide 
-                  ? 'bg-yellow-300 scale-125' 
-                  : 'bg-white bg-opacity-50 hover:bg-opacity-75'
+                  ? 'bg-yellow-300 scale-125 shadow-lg shadow-yellow-300/50' 
+                  : 'bg-white bg-opacity-50 hover:bg-opacity-75 hover:scale-110'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -115,7 +158,7 @@ const HeroSection: React.FC = () => {
       {/* Navigation Arrows */}
       <button
         onClick={() => setCurrentSlide((prev) => (prev - 1 + backgroundImages.length) % backgroundImages.length)}
-        className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-30 hover:bg-opacity-50 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+        className="absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 z-20 bg-black/30 backdrop-blur-sm hover:bg-black/50 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 border border-white/20"
         aria-label="Previous slide"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,13 +168,14 @@ const HeroSection: React.FC = () => {
 
       <button
         onClick={() => setCurrentSlide((prev) => (prev + 1) % backgroundImages.length)}
-        className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-30 hover:bg-opacity-50 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+        className="absolute right-4 md:right-8 top-1/2 transform -translate-y-1/2 z-20 bg-black/30 backdrop-blur-sm hover:bg-black/50 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 border border-white/20"
         aria-label="Next slide"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       </button>
+
     </section>
   );
 };

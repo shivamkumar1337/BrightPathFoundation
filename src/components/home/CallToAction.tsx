@@ -115,22 +115,10 @@ const CallToAction: React.FC = () => {
               Get Involved Today
             </span>
             
-            <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-              {title.includes('Light Up') ? (
-                <>
-                  {title.split('Light Up')[0]}
-                  <span className="block bg-gradient-to-r from-blue-600 via-orange-500 to-green-600 bg-clip-text text-transparent mt-2">
-                    Light Up Someone's Path?
+            <h2 className="flex flex-row justify-center text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                  <span className="block bg-gradient-to-r px-4 py-4 from-blue-600 via-orange-500 to-green-600 bg-clip-text text-transparent">
+                    Ready to Light Up Someone's Path?
                   </span>
-                </>
-              ) : (
-                <>
-                  {title}
-                  <span className="block bg-gradient-to-r from-blue-600 via-orange-500 to-green-600 bg-clip-text text-transparent mt-2">
-                    Someone's Path?
-                  </span>
-                </>
-              )}
             </h2>
             <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mb-8"></div>
             
@@ -193,7 +181,7 @@ const CallToAction: React.FC = () => {
           </div>
           
           {/* Trust Message */}
-          <div className="bg-gradient-to-r from-orange-50 to-blue-50 rounded-2xl p-8 max-w-4xl mx-auto">
+          {/* <div className="bg-gradient-to-r from-orange-50 to-blue-50 rounded-2xl p-8 max-w-4xl mx-auto">
             <div className="text-center">
               <p className="text-lg text-gray-700 font-medium mb-6">
                 🔒 <strong>100% Secure</strong> • <strong>Tax Deductible</strong> • <strong>Transparent Impact Reporting</strong>
@@ -213,7 +201,7 @@ const CallToAction: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

@@ -50,18 +50,18 @@ const ProjectPage: React.FC = () => {
               {project.gallery_images && project.gallery_images.length > 0 && (
                 <ProjectGallery images={project.gallery_images} title={project.title} />
               )}
-              <ProjectImpact project={project} />
+              {/* <ProjectImpact project={project} /> */}
             </div>
             
             {/* Sidebar */}
-            <div className="lg:col-span-1">
+            {/* <div className="lg:col-span-1">
               <ProjectDetails project={project} />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
       
-      <RelatedProjects currentProject={project} />
+      {/* <RelatedProjects currentProject={project} /> */}
     </div>
   );
 };

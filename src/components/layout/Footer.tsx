@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
               </Link>
               
               <p className="ml-4 text-gray-300 mb-8 max-w-md leading-relaxed text-lg">
-                For over 15 years, we've been illuminating paths to hope and progress through 
+                For over 10 years, we've been illuminating paths to hope and progress through 
                 education, disaster relief, youth sports, and food security programs.
               </p>
               </div>
@@ -173,7 +173,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Contact Information Bar */}
+          {/* Contact Information Bar
           <div className="border-t border-gray-800 pt-12 mb-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center md:text-left">
@@ -182,9 +182,9 @@ const Footer: React.FC = () => {
                   Visit Us
                 </h5>
                 <div className="text-gray-300 space-y-2">
-                  <p>123 Hope Street, Suite 456</p>
-                  <p>Bright City, BC 12345</p>
-                  <p>United States</p>
+                  <p>Bright Path Foundation</p>
+                  {/* <p>Bright City, BC 12345</p> */}
+                  {/* <p>Delhi</p>
                 </div>
                 <button className="mt-4 text-orange-400 hover:text-orange-300 font-medium transition-colors duration-300 hover:underline">
                   Get Directions →
@@ -197,55 +197,12 @@ const Footer: React.FC = () => {
                   Contact Us
                 </h5>
                 <div className="text-gray-300 space-y-2">
-                  <p>Main: <a href="tel:+15551234567" className="hover:text-white transition-colors">+1 (555) 123-4567</a></p>
-                  <p>Emergency: <a href="tel:+15559111234" className="hover:text-white transition-colors">+1 (555) 911-1234</a></p>
-                  <p>Email: <a href="mailto:info@brightpath.org" className="hover:text-white transition-colors">info@brightpath.org</a></p>
+                  <p>Call Anytime: <a href="tel:+919821065827" className="hover:text-white transition-colors">+91 98210 65827</a></p>
                 </div>
               </div>
               
-              <div className="text-center md:text-left">
-                <h5 className="font-semibold mb-4 text-blue-400 flex items-center justify-center md:justify-start text-lg">
-                  <span className="mr-3">🕒</span>
-                  Office Hours
-                </h5>
-                <div className="text-gray-300 space-y-2">
-                  <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                  <p>Saturday: 10:00 AM - 4:00 PM</p>
-                  <p>Sunday: Closed</p>
-                  <p className="text-orange-400 font-medium">24/7 Emergency Response</p>
-                </div>
-              </div>
             </div>
-          </div>
-
-          {/* Trust Indicators */}
-          <div className="border-t border-gray-800 pt-12 mb-12">
-            <div className="text-center">
-              <h5 className="text-xl font-semibold mb-6 text-gray-300">Trusted by Communities Worldwide</h5>
-              <div className="flex flex-wrap justify-center items-center gap-8 text-gray-400">
-                <div className="flex items-center bg-gray-800/50 px-4 py-3 rounded-xl border border-gray-700">
-                  <span className="w-3 h-3 bg-green-500 rounded-full mr-3"></span>
-                  <span className="font-medium">Charity Navigator</span>
-                  <span className="ml-2 text-green-400">4-Star Rating</span>
-                </div>
-                <div className="flex items-center bg-gray-800/50 px-4 py-3 rounded-xl border border-gray-700">
-                  <span className="w-3 h-3 bg-yellow-500 rounded-full mr-3"></span>
-                  <span className="font-medium">GuideStar</span>
-                  <span className="ml-2 text-yellow-400">Gold Seal</span>
-                </div>
-                <div className="flex items-center bg-gray-800/50 px-4 py-3 rounded-xl border border-gray-700">
-                  <span className="w-3 h-3 bg-blue-500 rounded-full mr-3"></span>
-                  <span className="font-medium">BBB</span>
-                  <span className="ml-2 text-blue-400">A+ Rating</span>
-                </div>
-                <div className="flex items-center bg-gray-800/50 px-4 py-3 rounded-xl border border-gray-700">
-                  <span className="w-3 h-3 bg-purple-500 rounded-full mr-3"></span>
-                  <span className="font-medium">85% Direct</span>
-                  <span className="ml-2 text-purple-400">Program Funding</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div> */}
 
           {/* Bottom Footer */}
           <div className="border-t border-gray-800 pt-8">
@@ -254,8 +211,8 @@ const Footer: React.FC = () => {
               <div className="text-gray-400 mb-4 md:mb-0">
                 <p>
                   © {currentYear} Bright Path Foundation. All rights reserved. 
-                  <span className="mx-3">|</span>
-                  <span className="text-orange-400">EIN: 12-3456789</span>
+                  {/* <span className="mx-3">|</span> */}
+                  {/* <span className="text-orange-400">EIN: 12-3456789</span> */}
                 </p>
               </div>
 

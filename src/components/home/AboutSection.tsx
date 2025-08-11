@@ -91,9 +91,9 @@ const AboutSection: React.FC = () => {
 
   // Use database content or fallback to defaults
   const features = content?.metadata?.programs || defaultFeatures;
-  const title = content?.title || 'Illuminating Paths to Hope & Progress';
-  const description = content?.content||"";
-  const subdiscription = content?.subtitle||"";
+  const title = content?.title || '';
+  const description = content?.subtitle||"";
+  const subdiscription = content?.content||"";
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="container mx-auto px-4 lg:px-8">
@@ -103,7 +103,7 @@ const AboutSection: React.FC = () => {
             <div>
               <span className="inline-flex items-center px-6 py-3 bg-orange-100 text-orange-700 rounded-full text-sm font-bold mb-6 shadow-sm">
                 <span className="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
-                About Bright Path Foundation
+                About us
               </span>
               <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
                 {title.split(' ').slice(0, 3).join(' ')}
@@ -122,14 +122,6 @@ const AboutSection: React.FC = () => {
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 pt-6">
-              <Button variant="primary" size="lg" className="shadow-lg hover:shadow-xl transform hover:-translate-y-1" onClick={() => navigate(ROUTES.ABOUT)}>
-                🌟 Learn Our Story
-              </Button>
-              <Button variant="outline" size="lg" className="border-2 border-orange-500 text-orange-600 hover:bg-orange-50" onClick={() => navigate(ROUTES.WORK)}>
-                📊 View Impact Report
-              </Button>
-            </div>
           </div>
 
           {/* Right Content - Enhanced Features Grid */}
