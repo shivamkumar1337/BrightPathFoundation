@@ -21,13 +21,6 @@ const Footer: React.FC = () => {
     { name: 'News & Updates', href: '/news' },
   ];
 
-  const legalLinks = [
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Financial Reports', href: '/reports' },
-    { name: 'Code of Conduct', href: '/conduct' },
-  ];
-
   return (
     <footer className="bg-gray-900 text-white relative overflow-hidden">
       {/* Background decorative elements */}
@@ -96,14 +89,7 @@ const Footer: React.FC = () => {
                 ))}
               </div>
 
-              {/* Newsletter Signup */}
-              <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700">
-                <h4 className="text-xl font-semibold mb-4 text-orange-400 flex items-center">
-                  <span className="mr-3">📧</span>
-                  Stay Connected
-                </h4>
-                
-              </div>
+      
             </div>
 
             {/* Our Programs */}

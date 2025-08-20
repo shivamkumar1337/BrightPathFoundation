@@ -3,7 +3,7 @@ import React from 'react';
 import Card from '../common/Card';
 import type { Project } from '../../types/database';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../utils/routes';
+// import { ROUTES } from '../../utils/routes';
 
 interface ProjectGridProps {
   projects: Project[];
