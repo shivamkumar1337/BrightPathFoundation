@@ -6,14 +6,10 @@ export const ROUTES = {
   WORK_CATEGORY: '/work/:category',
   GALLERY: '/gallery',
   CONTACT: '/contact',
-  
-  // Admin routes (for future use)
-  ADMIN_LOGIN: '/admin/login',
-  ADMIN_DASHBOARD: '/admin',
-  ADMIN_CONTENT: '/admin/content',
-  ADMIN_MEDIA: '/admin/media',
-  ADMIN_MESSAGES: '/admin/messages',
-  ADMIN_SETTINGS: '/admin/settings',
+  WORK_EDUCATION: '/work/education',
+  WORK_DISASTER_RELIEF: '/work/disaster-relief',
+  WORK_SPORTS: '/work/sports',
+  WORK_FOOD_DISTRIBUTION: '/work/food-distribution',
   
   // Error routes
   NOT_FOUND: '*'

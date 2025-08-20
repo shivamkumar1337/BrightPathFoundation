@@ -1,12 +1,8 @@
 import React from 'react';
-// import Button from '../common/Button';
 import { useContent } from '../../hooks/useContent';
-// import { ROUTES } from '../../utils/routes';
-// import { useNavigate } from 'react-router-dom';
 
 const AboutSection: React.FC = () => {
   const { content, loading, error } = useContent('about_preview');
-  // const navigate = useNavigate();
 
   // Default features as fallback
   const defaultFeatures = [
@@ -91,9 +87,10 @@ const AboutSection: React.FC = () => {
 
   // Use database content or fallback to defaults
   const features = content?.metadata?.programs || defaultFeatures;
-  const title = content?.title || '';
-  const description = content?.subtitle||"";
-  const subdiscription = content?.content||"";
+  const title = content?.title || 'Empowering Communities Through Action';
+  const description = content?.subtitle || "We believe in the power of collective action to transform lives and build stronger communities.";
+  const subdescription = content?.content || "Through our comprehensive programs in education, disaster relief, sports development, and food security, we work hand-in-hand with communities to create lasting positive change and build resilient societies for the future.";
+
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="container mx-auto px-4 lg:px-8">
@@ -118,10 +115,9 @@ const AboutSection: React.FC = () => {
                 {description}
               </p>
               <p className="text-lg text-gray-600">
-                {subdiscription}
+                {subdescription}
               </p>
             </div>
-            
           </div>
 
           {/* Right Content - Enhanced Features Grid */}
@@ -129,8 +125,7 @@ const AboutSection: React.FC = () => {
             {features.map((feature: any, index: number) => (
               <div 
                 key={index} 
-                className="group relative bg-white rounded-2xl p-8 shadow-lg  border border-gray-100"
-                // style={{ animationDelay: `${index * 0.1}s` }}
+                className="group relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100"
               >
                 {/* Background decoration */}
                 <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-100 to-transparent rounded-2xl opacity-50"></div>
@@ -150,8 +145,6 @@ const AboutSection: React.FC = () => {
                     {feature.description}
                   </p>
                 </div>
-                
-                
               </div>
             ))}
           </div>

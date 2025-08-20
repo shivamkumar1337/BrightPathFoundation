@@ -1,141 +1,27 @@
-import React, { useState, useMemo } from 'react';
-// import Navigation from '../components/layout/Navigation';
-// import Footer from '../components/layout/Footer';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import CategoryFilter from '../components/work/CategoryFilter';
 import ProjectGrid from '../components/work/ProjectGrid';
-import StatsOverview from '../components/work/StatsOverview';
-
-interface Project {
-  id: number;
-  title: string;
-  category: string;
-  description: string;
-  image: string;
-  beneficiaries: number;
-  location: string;
-  status: 'active' | 'completed' | 'planned';
-  budget?: number;
-  startDate?: string;
-  endDate?: string;
-  tags: string[];
-}
+import { useAllProjects } from '../hooks/useProjects';
 
 const WorkPage: React.FC = () => {
+  const { category } = useParams<{ category?: string }>();
   const [activeCategory, setActiveCategory] = useState('all');
-  const [loading, setLoading] = useState(false);
+  const [filterLoading, setFilterLoading] = useState(false);
+  
+  // Fetch all projects from database
+  const { projects, loading, error } = useAllProjects();
 
-  // Mock data - will be replaced with API data later
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Rural School Development Program",
-      category: "education",
-      description: "Building and renovating schools in rural areas to provide quality education for underprivileged children. This comprehensive program includes infrastructure development, teacher training, and educational material provision.",
-      image: "/api/placeholder/400/250",
-      beneficiaries: 500,
-      location: "Rural Villages, State A",
-      status: "active",
-      budget: 75000,
-      startDate: "2024-01-15",
-      endDate: "2024-12-31",
-      tags: ["Infrastructure", "Teacher Training", "Rural Development"]
-    },
-    {
-      id: 2,
-      title: "Emergency Flood Relief Operations",
-      category: "disaster-relief",
-      description: "Providing immediate assistance and long-term recovery support to flood-affected communities including emergency supplies, temporary shelter, and rehabilitation programs.",
-      image: "/api/placeholder/400/250",
-      beneficiaries: 1200,
-      location: "Flood-affected Districts",
-      status: "completed",
-      budget: 120000,
-      startDate: "2023-08-01",
-      endDate: "2024-02-28",
-      tags: ["Emergency Response", "Rehabilitation", "Community Support"]
-    },
-    {
-      id: 3,
-      title: "Youth Sports Development Initiative",
-      category: "sports",
-      description: "Developing youth through sports activities, building character and promoting healthy lifestyles while providing opportunities for talented athletes to excel.",
-      image: "/api/placeholder/400/250",
-      beneficiaries: 300,
-      location: "Urban Communities, City B",
-      status: "active",
-      budget: 45000,
-      startDate: "2024-03-01",
-      tags: ["Youth Development", "Health", "Character Building"]
-    },
-    {
-      id: 4,
-      title: "Community Kitchen Network",
-      category: "food-distribution",
-      description: "Providing nutritious meals to families in need and supporting food security in underserved areas through a network of community kitchens and food distribution centers.",
-      image: "/api/placeholder/400/250",
-      beneficiaries: 800,
-      location: "Multiple City Centers",
-      status: "active",
-      budget: 60000,
-      startDate: "2023-11-01",
-      tags: ["Nutrition", "Food Security", "Community Support"]
-    },
-    {
-      id: 5,
-      title: "Digital Literacy Program",
-      category: "education",
-      description: "Teaching digital skills and computer literacy to adults and children in underserved communities to bridge the digital divide and create new opportunities.",
-      image: "/api/placeholder/400/250",
-      beneficiaries: 250,
-      location: "Rural and Urban Areas",
-      status: "planned",
-      budget: 35000,
-      startDate: "2024-06-01",
-      tags: ["Digital Skills", "Technology", "Adult Education"]
-    },
-    {
-      id: 6,
-      title: "Earthquake Response Team",
-      category: "disaster-relief",
-      description: "Rapid response team for earthquake emergencies providing search and rescue operations, medical aid, and emergency supplies to affected populations.",
-      image: "/api/placeholder/400/250",
-      beneficiaries: 2000,
-      location: "Earthquake-prone Regions",
-      status: "active",
-      budget: 150000,
-      startDate: "2024-01-01",
-      tags: ["Emergency Response", "Search & Rescue", "Medical Aid"]
-    },
-    {
-      id: 7,
-      title: "Girls Football League",
-      category: "sports",
-      description: "Empowering young girls through football, promoting gender equality in sports while building confidence, leadership skills, and physical fitness.",
-      image: "/api/placeholder/400/250",
-      beneficiaries: 150,
-      location: "Schools and Communities",
-      status: "active",
-      budget: 25000,
-      startDate: "2024-02-15",
-      tags: ["Girls Empowerment", "Gender Equality", "Leadership"]
-    },
-    {
-      id: 8,
-      title: "Mobile Food Pantry",
-      category: "food-distribution",
-      description: "Mobile food distribution service reaching remote and underserved areas where traditional food banks cannot operate effectively.",
-      image: "/api/placeholder/400/250",
-      beneficiaries: 600,
-      location: "Remote Rural Areas",
-      status: "completed",
-      budget: 40000,
-      startDate: "2023-06-01",
-      endDate: "2024-01-31",
-      tags: ["Mobile Service", "Remote Areas", "Food Access"]
+  // Set active category based on URL parameter
+  useEffect(() => {
+    if (category) {
+      setActiveCategory(category);
+    } else {
+      setActiveCategory('all');
     }
-  ];
+  }, [category]);
 
-  const categories = [
+  const categories = useMemo(() => [
     {
       id: 'all',
       name: 'All Programs',
@@ -171,7 +57,7 @@ const WorkPage: React.FC = () => {
       color: 'bg-orange-600',
       count: projects.filter(p => p.category === 'food-distribution').length
     }
-  ];
+  ], [projects]);
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === 'all') {
@@ -181,46 +67,139 @@ const WorkPage: React.FC = () => {
   }, [activeCategory, projects]);
 
   const handleCategoryChange = (categoryId: string) => {
-    setLoading(true);
+    setFilterLoading(true);
     setActiveCategory(categoryId);
     
-    // Simulate loading delay
+    // Update URL without page reload
+    const newUrl = categoryId === 'all' ? '/work' : `/work/${categoryId}`;
+    window.history.pushState({}, '', newUrl);
+    
+    // Simulate loading delay for smooth UX
     setTimeout(() => {
-      setLoading(false);
-    }, 500);
+      setFilterLoading(false);
+    }, 300);
   };
 
-  return (
-    <div className="min-h-screen">
+  // Loading state for initial data fetch
+  if (loading) {
+    return (
+      <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-20">
+        <section className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-20">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">Our Work</h1>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto text-blue-100">
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto text-orange-100">
               Discover our comprehensive programs making a real difference in education, 
               disaster relief, sports development, and food security across communities worldwide.
             </p>
           </div>
         </section>
 
-        <StatsOverview />
-
-        {/* Projects Section */}
-        <section className="py-16 bg-gray-50">
+        {/* Loading Stats */}
+        <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <CategoryFilter
-              categories={categories}
-              activeCategory={activeCategory}
-              onCategoryChange={handleCategoryChange}
-            />
-            
-            <ProjectGrid
-              projects={filteredProjects}
-              loading={loading}
-              category={activeCategory}
-            />
+            <div className="text-center mb-12">
+              <div className="animate-pulse">
+                <div className="h-8 bg-gray-200 rounded w-64 mx-auto mb-4"></div>
+                <div className="h-4 bg-gray-200 rounded w-96 mx-auto"></div>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <div key={index} className="animate-pulse text-center p-6 bg-gray-50 rounded-2xl">
+                  <div className="w-16 h-16 bg-gray-200 rounded-2xl mx-auto mb-4"></div>
+                  <div className="h-8 bg-gray-200 rounded w-16 mx-auto mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-24 mx-auto"></div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
+
+        {/* Loading Projects */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="animate-pulse mb-12">
+              <div className="flex flex-wrap justify-center gap-4">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <div key={index} className="h-12 bg-gray-200 rounded-full w-32"></div>
+                ))}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="animate-pulse bg-white rounded-2xl shadow-lg overflow-hidden">
+                  <div className="h-48 bg-gray-200"></div>
+                  <div className="p-6">
+                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
+                    <div className="h-6 bg-gray-200 rounded w-full mb-4"></div>
+                    <div className="space-y-2 mb-4">
+                      <div className="h-3 bg-gray-200 rounded w-full"></div>
+                      <div className="h-3 bg-gray-200 rounded w-5/6"></div>
+                    </div>
+                    <div className="h-10 bg-gray-200 rounded w-full"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="min-h-screen">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-20">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">Our Work</h1>
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto text-orange-100">
+              Discover our comprehensive programs making a real difference in communities worldwide.
+            </p>
+          </div>
+        </section>
+
+        {/* Error State */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4 text-center">
+            <div className="max-w-md mx-auto">
+              <div className="text-6xl mb-6">⚠️</div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Unable to Load Projects</h2>
+              <p className="text-gray-600 mb-6">{error}</p>
+              <button 
+                onClick={() => window.location.reload()} 
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-300"
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen">
+      {/* Projects Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <CategoryFilter
+            categories={categories}
+            activeCategory={activeCategory}
+            onCategoryChange={handleCategoryChange}
+          />
+          
+          <ProjectGrid
+            projects={filteredProjects}
+            loading={filterLoading}
+            category={activeCategory}
+          />
+        </div>
+      </section>
     </div>
   );
 };

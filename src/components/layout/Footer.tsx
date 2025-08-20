@@ -102,17 +102,7 @@ const Footer: React.FC = () => {
                   <span className="mr-3">📧</span>
                   Stay Connected
                 </h4>
-                <p className="text-gray-300 mb-6">Get updates on our latest projects and impact stories.</p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="flex-1 px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300"
-                  />
-                  <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 hover:scale-105 shadow-lg">
-                    Subscribe
-                  </button>
-                </div>
+                
               </div>
             </div>
 
@@ -139,14 +129,7 @@ const Footer: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              
-              {/* Program Stats */}
-              <div className="mt-8 p-6 bg-gray-800/50 rounded-2xl border border-gray-700">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-orange-400 mb-2">150+</div>
-                  <div className="text-sm text-gray-400">Active Projects</div>
-                </div>
-              </div>
+
             </div>
 
             {/* Quick Links */}
@@ -172,76 +155,30 @@ const Footer: React.FC = () => {
               </ul>
             </div>
           </div>
-
-          {/* Contact Information Bar
-          <div className="border-t border-gray-800 pt-12 mb-12">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center md:text-left">
-                <h5 className="font-semibold mb-4 text-blue-400 flex items-center justify-center md:justify-start text-lg">
-                  <span className="mr-3">📍</span>
-                  Visit Us
-                </h5>
-                <div className="text-gray-300 space-y-2">
-                  <p>Bright Path Foundation</p>
-                  {/* <p>Bright City, BC 12345</p> */}
-                  {/* <p>Delhi</p>
-                </div>
-                <button className="mt-4 text-orange-400 hover:text-orange-300 font-medium transition-colors duration-300 hover:underline">
-                  Get Directions →
-                </button>
-              </div>
-              
-              <div className="text-center md:text-left">
-                <h5 className="font-semibold mb-4 text-blue-400 flex items-center justify-center md:justify-start text-lg">
-                  <span className="mr-3">📞</span>
-                  Contact Us
-                </h5>
-                <div className="text-gray-300 space-y-2">
-                  <p>Call Anytime: <a href="tel:+919821065827" className="hover:text-white transition-colors">+91 98210 65827</a></p>
-                </div>
-              </div>
-              
-            </div>
-          </div> */}
-
           {/* Bottom Footer */}
-          <div className="border-t border-gray-800 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-              {/* Copyright */}
-              <div className="text-gray-400 mb-4 md:mb-0">
-                <p>
-                  © {currentYear} Bright Path Foundation. All rights reserved. 
-                  {/* <span className="mx-3">|</span> */}
-                  {/* <span className="text-orange-400">EIN: 12-3456789</span> */}
-                </p>
-              </div>
+                          <div className="flex flex-col md:flex-col justify-center items-center">
 
-              {/* Legal Links */}
-              <div className="flex flex-wrap justify-center gap-6">
-                {legalLinks.map((link, index) => (
-                  <React.Fragment key={link.name}>
-                    <Link
-                      to={link.href}
-                      className="text-gray-400 hover:text-white transition-colors duration-300 hover:underline"
-                    >
-                      {link.name}
-                    </Link>
-                    {index < legalLinks.length - 1 && (
-                      <span className="text-gray-600">|</span>
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
 
-            {/* Final Message */}
-            <div className="text-center pt-8 border-t border-gray-800">
               <p className="text-gray-400 italic text-lg">
                 "Every step forward lights the path for those who follow. Together, we create brighter tomorrows." 
               </p>
               <p className="mt-4 text-orange-400 font-medium">
                 ✨ Thank you for being part of our journey ✨
               </p>
+            </div>
+          <div className="border-t border-gray-800 pt-8">
+              <div className="flex flex-row md:flex-row justify-center items-center mb-4">
+              {/* Copyright */}
+              <div className="text-gray-400 mb-4 md:mb-0">
+                <p>
+                  © {currentYear} Bright Path Foundation. All rights reserved. 
+                </p>
+              </div>
+
+            </div>
+
+            {/* Final Message */}
+            <div className="text-center pt-8 border-t border-gray-800">
             </div>
           </div>
         </div>

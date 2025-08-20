@@ -1,13 +1,13 @@
 import React from 'react';
 import MissionVisionSection from '../components/about/MissionVisionSection';
 import TeamSection from '../components/about/TeamSection';
-import StorySection from '../components/about/StorySection';
+import AboutSection from '../components/home/AboutSection';
 
 const AboutPage: React.FC = () => {
   return (
     <div className="min-h-screen">
+        <AboutSection />
         <MissionVisionSection />
-        <StorySection />
         <TeamSection />
     </div>
   );

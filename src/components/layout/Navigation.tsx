@@ -8,11 +8,11 @@ const Navigation: React.FC = () => {
   const location = useLocation();
 
   const workCategories = [
-    { name: 'Education', href: '/work/education', icon: '📚' },
-    { name: 'Disaster Relief', href: '/work/disaster-relief', icon: '🚨' },
-    { name: 'Sports', href: '/work/sports', icon: '⚽' },
-    { name: 'Food Distribution', href: '/work/food-distribution', icon: '🍽️' },
-  ];
+  { name: 'Education', href: ROUTES.WORK_EDUCATION, icon: '📚' },
+  { name: 'Disaster Relief', href: ROUTES.WORK_DISASTER_RELIEF, icon: '🚨' },
+  { name: 'Sports', href: ROUTES.WORK_SPORTS, icon: '⚽' },
+  { name: 'Food Distribution', href: ROUTES.WORK_FOOD_DISTRIBUTION, icon: '🍽️' },
+];
 
   const navItems = [
     { name: 'Home', href: ROUTES.HOME },
