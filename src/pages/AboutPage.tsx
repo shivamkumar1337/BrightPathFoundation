@@ -1,6 +1,6 @@
 import React from 'react';
 import MissionVisionSection from '../components/about/MissionVisionSection';
-import TeamSection from '../components/about/TeamSection';
+// import TeamSection from '../components/about/TeamSection';
 import AboutSection from '../components/home/AboutSection';
 
 const AboutPage: React.FC = () => {
@@ -8,7 +8,7 @@ const AboutPage: React.FC = () => {
     <div className="min-h-screen">
         <AboutSection />
         <MissionVisionSection />
-        <TeamSection />
+        {/* <TeamSection /> */}
     </div>
   );
 };

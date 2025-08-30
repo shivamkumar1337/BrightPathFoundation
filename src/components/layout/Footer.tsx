@@ -14,11 +14,9 @@ const Footer: React.FC = () => {
 
   const quickLinks = [
     { name: 'About Us', href: ROUTES.ABOUT },
-    { name: 'Our Impact', href: '/impact' },
-    { name: 'Get Involved', href: '/get-involved' },
-    { name: 'Volunteer', href: '/volunteer' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'News & Updates', href: '/news' },
+    // { name: 'Our Work', href: ROUTES.WORK },
+    { name: 'Gallery', href: ROUTES.GALLERY},
+    { name: 'Contact Us', href: ROUTES.CONTACT },
   ];
 
   return (
@@ -96,7 +94,7 @@ const Footer: React.FC = () => {
             <div>
               <h4 className="text-xl font-semibold mb-8 text-orange-400 flex items-center">
                 <span className="mr-3">🌟</span>
-                Our Programs
+                Our Work
               </h4>
               <ul className="space-y-4">
                 {programLinks.map((link) => (
@@ -171,11 +169,11 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Floating Donate Button (Mobile) */}
-      <div className="fixed bottom-6 right-6 lg:hidden z-40">
+      {/* <div className="fixed bottom-6 right-6 lg:hidden z-40">
         <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 group">
           <span className="text-xl group-hover:animate-pulse">❤️</span>
         </button>
-      </div>
+      </div> */}
     </footer>
   );
 };

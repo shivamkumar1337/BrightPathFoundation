@@ -206,7 +206,7 @@ export const teamAPI = {
   }
 }
 
-// Gallery API
+// Gallery API - Using Supabase client
 export const galleryAPI = {
   // Get all gallery images
   async getAllImages(): Promise<GalleryImage[]> {
@@ -247,6 +247,79 @@ export const galleryAPI = {
 
     if (error) {
       console.error('Error fetching featured images:', error)
+      return []
+    }
+    return data || []
+  },
+
+  // Get single image by ID
+  async getImageById(id: string): Promise<GalleryImage | null> {
+    const { data, error } = await supabase
+      .from('gallery')
+      .select('*')
+      .eq('id', id)
+      .single()
+
+    if (error) {
+      console.error('Error fetching image:', error)
+      return null
+    }
+    return data
+  },
+
+  // Get images with filters
+  async getImagesWithFilters(filters: {
+    category?: string
+    location?: string
+    featured?: boolean
+    limit?: number
+    offset?: number
+  }): Promise<GalleryImage[]> {
+    let query = supabase
+      .from('gallery')
+      .select('*')
+
+    if (filters.category) {
+      query = query.eq('category', filters.category)
+    }
+
+    if (filters.location) {
+      query = query.ilike('location', `%${filters.location}%`)
+    }
+
+    if (filters.featured !== undefined) {
+      query = query.eq('is_featured', filters.featured)
+    }
+
+    query = query.order('sort_order', { ascending: true })
+
+    if (filters.limit) {
+      query = query.limit(filters.limit)
+    }
+
+    if (filters.offset) {
+      query = query.range(filters.offset, filters.offset + (filters.limit || 10) - 1)
+    }
+
+    const { data, error } = await query
+
+    if (error) {
+      console.error('Error fetching images with filters:', error)
+      return []
+    }
+    return data || []
+  },
+
+  // Search images
+  async searchImages(searchTerm: string): Promise<GalleryImage[]> {
+    const { data, error } = await supabase
+      .from('gallery')
+      .select('*')
+      .or(`title.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%,location.ilike.%${searchTerm}%`)
+      .order('sort_order', { ascending: true })
+
+    if (error) {
+      console.error('Error searching images:', error)
       return []
     }
     return data || []

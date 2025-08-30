@@ -1,15 +1,6 @@
+// components/gallery/ImageModal.tsx
 import React, { useEffect } from 'react';
-
-interface GalleryImage {
-  id: number;
-  src: string;
-  thumbnail: string;
-  title: string;
-  description: string;
-  category: string;
-  date: string;
-  location: string;
-}
+import type { GalleryImage } from '../../types/database';
 
 interface ImageModalProps {
   image: GalleryImage;
@@ -48,6 +39,27 @@ const ImageModal: React.FC<ImageModalProps> = ({
     };
   }, [isOpen, onClose, onNext, onPrev]);
 
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
+  const getCategoryName = (cat: string) => {
+    const categoryNames: { [key: string]: string } = {
+      'education': 'Education',
+      'disaster-relief': 'Disaster Relief',
+      'sports': 'Sports',
+      'food-distribution': 'Food Distribution',
+      'events': 'Events',
+      'team': 'Team',
+      'general': 'General'
+    };
+    return categoryNames[cat] || cat;
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -63,9 +75,13 @@ const ImageModal: React.FC<ImageModalProps> = ({
         <div className="relative">
           {/* Image */}
           <img
-            src={image.src}
-            alt={image.title}
+            src={image.image_url}
+            alt={image.alt_text || image.title || 'Gallery image'}
             className="max-w-full max-h-[80vh] object-contain rounded-lg"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = "/api/placeholder/800/600";
+            }}
           />
           
           {/* Navigation Buttons */}
@@ -106,31 +122,52 @@ const ImageModal: React.FC<ImageModalProps> = ({
               {currentIndex} of {totalImages}
             </div>
           )}
+
+          {/* Featured Badge */}
+          {image.is_featured && (
+            <div className="absolute top-4 left-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+              ⭐ Featured
+            </div>
+          )}
         </div>
       </div>
       
       {/* Image Info */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-8">
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent text-white p-8">
         <div className="container mx-auto">
-          <h3 className="text-2xl font-bold mb-2">{image.title}</h3>
-          <p className="text-lg mb-2">{image.description}</p>
-          <div className="flex items-center space-x-4 text-sm text-gray-300">
+          <h3 className="text-2xl font-bold mb-2">{image.title || 'Untitled'}</h3>
+          {image.description && (
+            <p className="text-lg mb-4">{image.description}</p>
+          )}
+          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-300">
             <span className="flex items-center">
               <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
               </svg>
-              {image.location}
+              {image.location || 'Unknown Location'}
             </span>
             <span className="flex items-center">
               <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
               </svg>
-              {new Date(image.date).toLocaleDateString()}
+              {image.taken_date ? formatDate(image.taken_date) : formatDate(image.created_at)}
             </span>
-            <span className="capitalize px-2 py-1 bg-blue-600 rounded-full text-xs">
-              {image.category.replace('-', ' ')}
+            <span className="capitalize px-3 py-1 bg-orange-600 rounded-full text-xs font-medium">
+              {getCategoryName(image.category)}
             </span>
           </div>
+          {image.tags && image.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-3">
+              {image.tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

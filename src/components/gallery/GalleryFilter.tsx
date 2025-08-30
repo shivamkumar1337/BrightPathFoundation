@@ -1,3 +1,4 @@
+// components/gallery/GalleryFilter.tsx
 import React from 'react';
 
 interface Category {
@@ -11,48 +12,19 @@ interface GalleryFilterProps {
   categories: Category[];
   activeCategory: string;
   onCategoryChange: (categoryId: string) => void;
-  activeTab: 'photos' | 'videos';
-  onTabChange: (tab: 'photos' | 'videos') => void;
 }
 
 const GalleryFilter: React.FC<GalleryFilterProps> = ({
   categories,
   activeCategory,
-  onCategoryChange,
-  activeTab,
-  onTabChange
+  onCategoryChange
 }) => {
   return (
     <div className="mb-8">
-      {/* Tab Switcher */}
-      <div className="flex justify-center mb-8">
-        <div className="bg-gray-100 p-1 rounded-lg">
-          <button
-            onClick={() => onTabChange('photos')}
-            className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
-              activeTab === 'photos'
-                ? 'bg-white text-blue-600 shadow-md'
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
-          >
-            📷 Photos
-          </button>
-          <button
-            onClick={() => onTabChange('videos')}
-            className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
-              activeTab === 'videos'
-                ? 'bg-white text-blue-600 shadow-md'
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
-          >
-            🎥 Videos
-          </button>
-        </div>
-      </div>
-
       {/* Category Filter */}
       <div className="text-center mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Filter by Category</h3>
+        <h3 className="text-2xl font-bold text-gray-900 mb-2">Photo Gallery</h3>
+        <p className="text-gray-600 mb-6">Browse our collection of impactful moments</p>
         
         {/* Desktop Filter */}
         <div className="hidden md:flex justify-center flex-wrap gap-3">
@@ -60,10 +32,10 @@ const GalleryFilter: React.FC<GalleryFilterProps> = ({
             <button
               key={category.id}
               onClick={() => onCategoryChange(category.id)}
-              className={`flex items-center px-4 py-2 rounded-full font-medium transition-all duration-200 ${
+              className={`flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300 ${
                 activeCategory === category.id
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+                  ? 'bg-orange-500 text-white shadow-lg scale-105'
+                  : 'bg-white text-gray-700 hover:bg-orange-50 hover:text-orange-600 border border-gray-200 hover:border-orange-200'
               }`}
             >
               <span className="mr-2">{category.icon}</span>
@@ -84,7 +56,7 @@ const GalleryFilter: React.FC<GalleryFilterProps> = ({
           <select
             value={activeCategory}
             onChange={(e) => onCategoryChange(e.target.value)}
-            className="w-full max-w-xs px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full max-w-xs px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
           >
             {categories.map((category) => (
               <option key={category.id} value={category.id}>

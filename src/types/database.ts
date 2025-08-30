@@ -73,3 +73,21 @@ export interface ContactMessage {
   is_read?: boolean
   created_at?: string
 }
+
+// types/database.ts (add to existing file)
+export interface GalleryImage {
+  id: string;
+  title?: string;
+  description?: string;
+  image_url: string;
+  thumbnail_url?: string;
+  alt_text?: string;
+  category: string;
+  location?: string;
+  taken_date?: string;
+  tags?: string[];
+  is_featured: boolean;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}

@@ -35,30 +35,30 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ projects, loading, category }
     }
   };
 
-  const formatNumber = (num: number) => {
-    if (num >= 1000000) {
-      return `${(num / 1000000).toFixed(1)}M`;
-    } else if (num >= 1000) {
-      return `${(num / 1000).toFixed(1)}K`;
-    }
-    return num.toString();
-  };
+  // const formatNumber = (num: number) => {
+  //   if (num >= 1000000) {
+  //     return `${(num / 1000000).toFixed(1)}M`;
+  //   } else if (num >= 1000) {
+  //     return `${(num / 1000).toFixed(1)}K`;
+  //   }
+  //   return num.toString();
+  // };
 
-  const formatCurrency = (amount: number) => {
-    if (amount >= 1000000) {
-      return `$${(amount / 1000000).toFixed(1)}M`;
-    } else if (amount >= 1000) {
-      return `$${(amount / 1000).toFixed(0)}K`;
-    }
-    return `$${amount.toLocaleString()}`;
-  };
+  // const formatCurrency = (amount: number) => {
+  //   if (amount >= 1000000) {
+  //     return `$${(amount / 1000000).toFixed(1)}M`;
+  //   } else if (amount >= 1000) {
+  //     return `$${(amount / 1000).toFixed(0)}K`;
+  //   }
+  //   return `$${amount.toLocaleString()}`;
+  // };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short'
-    });
-  };
+  // const formatDate = (dateString: string) => {
+  //   return new Date(dateString).toLocaleDateString('en-US', {
+  //     year: 'numeric',
+  //     month: 'short'
+  //   });
+  // };
 
   const getCategoryName = (cat: string) => {
     const categoryNames: { [key: string]: string } = {
@@ -161,7 +161,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ projects, loading, category }
                 <span>{project.location}</span>
               </div>
 
-              <div className="flex justify-between items-center mb-4">
+              {/* <div className="flex justify-between items-center mb-4">
                 <div className="text-center">
                   <div className="text-lg font-bold text-orange-600">
                     {formatNumber(project.beneficiaries)}
@@ -184,7 +184,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ projects, loading, category }
                     <div className="text-xs text-gray-500">Started</div>
                   </div>
                 )}
-              </div>
+              </div> */}
 
               {project.tags && project.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-4">
